@@ -8,8 +8,8 @@ using namespace std;
 stack <string> token;
 
 struct kandidat{
-	string nama,visi,misi;	
-			
+	string nama,visi,misi,noUrut;
+	int suara;
 };
 
 // Stack
@@ -25,17 +25,23 @@ void stackToken(stack <string> token) {
 kandidat kdt[100];
 int jml;
 
-// Prototype
+// *****************************************PROTOTYPE FUNGSI************************************* //
+// Menu
 void mainMenu();
-void login();
 void mainAdmin();
+void login();
+// Kandidat
 void createKandidat();
 void readKandidat();
+// Token
 void createToken();
-void voting();
-void deleteToken();
 void readToken();
+void deleteToken();
 void cekToken();
+// Voting
+void voting();
+void doVoting();
+// ***************************************END PROTOTYPE FUNGSI*********************************** //
 
 
 // Main Program
@@ -43,9 +49,9 @@ int main(){
 	mainMenu();
 }
 
-// Fungsi .....
 
 
+// ********************************************FUNGSI******************************************** //
 // Menu Utama
 void mainMenu(){
 	int plh;
@@ -173,8 +179,8 @@ void createKandidat() {
 		cin >> kdt[i].visi;
 		cout << "Misi: ";
 		cin >> kdt[i].misi;
-		// cout << "Nomor urut: ";
-		// cin >> kdt.noUrut;
+		cout << "Nomor urut: ";
+		cin >> kdt[i].noUrut;
 	} 
 }
 
@@ -189,7 +195,8 @@ void readKandidat() {
 		cout << kdt[i].nama << endl;;
 		cout << kdt[i].visi << endl;
 		cout << kdt[i].misi << endl;
-		// cout << kdt.noUrut[i];
+		cout << kdt[i].noUrut << endl;;
+		cout << kdt[i].suara << endl;
 	}
 
 }
@@ -211,13 +218,13 @@ void createToken() {
        stackToken(token);
 }
 
-
+// Lihat Token
 void readToken() {
 	cout << "Token dalam stack:" << endl;
 	stackToken(token);
 }
 
-
+// Hapus Token
 void deleteToken() {
 	token.pop();
 
@@ -226,7 +233,7 @@ void deleteToken() {
 
 }
 
-
+// Validasi Token
 void cekToken() {
 	string tkn;
 
@@ -235,12 +242,37 @@ void cekToken() {
 
 		if(tkn == token.top()) {
 			cout << "Berhasil" << endl;
+			token.pop();
+			doVoting();
 		}else {
 			cout << "Token tidak ada" << endl;
 		}
 		
 }
 
+void doVoting() {
+	int plh;
+	readKandidat();
+	cout << "Pilih kandidat: ";
+	cin >> plh;
+		if(plh == 1) {
+			kdt[0].suara++;
+		}else if(plh == 2) {
+			kdt[1].suara++;
+		}else {
+			cout << "Salah nomorurut" << endl;
+		}
+
+	cout << "Hasil suara" << endl;
+	readKandidat();
+	mainMenu();
+}
+
 void voting() {
 	cekToken();
 }
+
+
+
+
+// *****************************************END FUNGSI***************************************** //
