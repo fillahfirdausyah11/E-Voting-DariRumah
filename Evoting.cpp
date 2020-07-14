@@ -8,7 +8,10 @@ using namespace std;
 stack <string> token;
 
 struct kandidat{
-	string nama,visi,misi,noUrut;
+	string nama;
+	string visi;
+	string misi;
+	string noUrut;
 	int suara;
 };
 
@@ -23,7 +26,7 @@ void stackToken(stack <string> token) {
 }
 
 kandidat kdt[100];
-int jml;
+int a,b,c,jml;
 
 // *****************************************PROTOTYPE FUNGSI************************************* //
 // Menu
@@ -33,6 +36,8 @@ void login();
 // Kandidat
 void createKandidat();
 void readKandidat();
+void updateKandidat();
+void deleteKandidat();
 // Token
 void createToken();
 void readToken();
@@ -130,10 +135,10 @@ void mainAdmin() {
 				readKandidat();
 			break;
 			case UPDATE:
-				//updateKandidat();
+				updateKandidat();
 			break;
 			case DELETE:
-				// deleteKandidat();
+				deleteKandidat();
 			break;
 			case TOKEN:
 				createToken();
@@ -171,33 +176,103 @@ void createKandidat() {
 	cout << "Masukan berapa kandidat: ";
 	cin >> jml;
 
+	b = 0;
 	for(int i = 0; i < jml; i++) {
-		cout << "Masukan kandidat ke-" << i + 1 << endl;
+		b += 1;
+		cout << "Masukan kandidat ke-" << b << endl;
 		cout << "Nama: ";
-		cin >> kdt[i].nama;
+		cin >> kdt[a].nama;
 		cout << "Visi: ";
-		cin >> kdt[i].visi;
+		cin >> kdt[a].visi;
 		cout << "Misi: ";
-		cin >> kdt[i].misi;
+		cin >> kdt[a].misi;
 		cout << "Nomor urut: ";
-		cin >> kdt[i].noUrut;
+		cin >> kdt[a].noUrut;
+		a++;
 	} 
 }
 
 // Lihat Kandidat
 void readKandidat() {
 
-	cout << "Data yang dimasukan" << endl;
-	cout << "==========================" << endl;
-
-	for(int i = 0; i < jml; i++) {
-		cout << "kandidat ke-" << i + 1 << endl;
-		cout << kdt[i].nama << endl;;
-		cout << kdt[i].visi << endl;
-		cout << kdt[i].misi << endl;
-		cout << kdt[i].noUrut << endl;;
-		cout << kdt[i].suara << endl;
+	cout << endl;
+ 	cout << "                                           Kandidat                                      " << endl;
+ 	cout << "=========================================================================================" << endl;
+ 	cout << "No \tNama \t\tVisi \t\tMisi \t\tNo.Urut \tSuara \t" 	<< endl;
+    cout << "=========================================================================================" << endl;
+    int j = 0;
+	for(int i = 0; i < a; i++) {
+		j+=1;
+		cout << j << "\t";
+		cout << kdt[i].nama 	<< "\t\t";
+		cout << kdt[i].visi 	<< "\t\t";
+		cout << kdt[i].misi 	<< "\t\t";
+		cout << kdt[i].noUrut 	<< "\t\t";
+		cout << kdt[i].suara 	<< "\t\t";
+		cout << endl;
 	}
+	cout << "=========================================================================================" << endl;
+
+}
+
+void updateKandidat(){
+	int j,k,l;
+	readKandidat();
+	cout << "Edit Kandidat No: ";
+	cin >> k;
+
+	l = k - 1;
+	cout << "data yang akan di edit" << endl;
+	cout << "=========================================" << endl;
+	cout << "Nama 		: " << kdt[l].nama << endl;
+	cout << "Visi 		: " << kdt[l].visi << endl;
+	cout << "Misi 		: " << kdt[l].misi << endl;
+	cout << "No.Urut 	: " << kdt[l].noUrut << endl;
+	cout << "=========================================" << endl;
+	cout <<  endl;
+	cout << "Silahkan edit" << endl;
+	cout << "=========================================" << endl;
+	cout << "Nama: ";
+	cin >> kdt[l].nama;
+	cout << "Visi: ";
+	cin >> kdt[l].visi;
+	cout << "Misi: ";
+	cin >> kdt[l].misi;
+	cout << "No.Urut: ";
+	cin >> kdt[l].noUrut;
+}
+
+void deleteKandidat() {
+	int w,x,y;
+	char z;
+	awal:
+	readKandidat();
+	cout << "Hapus Kandidat No: ";
+	cin >> x;
+
+	y = x - 1;
+	cout << "data yang akan di edit" << endl;
+	cout << "=========================================" << endl;
+	cout << "Nama 		: " << kdt[y].nama << endl;
+	cout << "Visi 		: " << kdt[y].visi << endl;
+	cout << "Misi 		: " << kdt[y].misi << endl;
+	cout << "No.Urut 	: " << kdt[y].noUrut << endl;
+	cout << "=========================================" << endl;
+	cout << "Yakin ingin hapus? (Y/N): ";
+	cin >> z;
+
+		yakin:
+		if(z == 'y' || z == 'Y') {
+			a--;
+			for(int i = y; i < a; i++) {
+				kdt[i] = kdt[i + 1];
+			}
+			cout << "Kandidat berhasil dihapus" << endl;
+		}else if(z == 'n' || z == 'N') {
+			goto awal;
+		}else {
+			goto yakin;
+		}
 
 }
 
