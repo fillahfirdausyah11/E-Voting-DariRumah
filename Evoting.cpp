@@ -26,7 +26,7 @@ void stackToken(stack <string> token) {
 }
 
 kandidat kdt[100];
-int a,b,c,jml;
+int a,b,c,jml,temp;
 
 // *****************************************PROTOTYPE FUNGSI************************************* //
 // Menu
@@ -46,6 +46,8 @@ void cekToken();
 // Voting
 void voting();
 void doVoting();
+// Shorting
+void shorting();
 // ***************************************END PROTOTYPE FUNGSI*********************************** //
 
 
@@ -60,6 +62,7 @@ int main(){
 // Menu Utama
 void mainMenu(){
 	int plh;
+	awal:
 	cout << "Evoting #DariRumah" << endl;
 	cout << "=================================" << endl;
 	cout << "1.Login(admin)"    << endl;
@@ -121,11 +124,12 @@ void mainAdmin() {
 	cout << "5.Buat Token"	    << endl;
 	cout << "6.Lihat Token"	    << endl;
 	cout << "7.Hapus Token"	    << endl;
-	cout << "8.Logout"	        << endl;
+	cout << "8.Hasil Akhir"	    << endl;
+	cout << "9.Logout"	        << endl;
 	cout << "Pilih menu :";
 	cin >> plh;
 
-	enum option {CREATE = 1, READ, UPDATE, DELETE, TOKEN, rTOKEN, dTOKEN, LOGOUT};
+	enum option {CREATE = 1, READ, UPDATE, DELETE, TOKEN, rTOKEN, dTOKEN, HASIL, LOGOUT};
 
 		switch(plh) {
 			case CREATE:
@@ -148,6 +152,9 @@ void mainAdmin() {
 			break;
 			case dTOKEN:
 				deleteToken();
+			break;
+			case HASIL:
+				shorting();
 			break;
 			case LOGOUT:
 				cout << "Anda telah logout" << endl;
@@ -198,7 +205,7 @@ void readKandidat() {
 	cout << endl;
  	cout << "                                           Kandidat                                      " << endl;
  	cout << "=========================================================================================" << endl;
- 	cout << "No \tNama \t\tVisi \t\tMisi \t\tNo.Urut \tSuara \t" 	<< endl;
+ 	cout << "No \tNama \t\tVisi \t\tMisi \t\t\tNo.Urut \tSuara \t" 	<< endl;
     cout << "=========================================================================================" << endl;
     int j = 0;
 	for(int i = 0; i < a; i++) {
@@ -334,6 +341,14 @@ void doVoting() {
 			kdt[0].suara++;
 		}else if(plh == 2) {
 			kdt[1].suara++;
+		}else if(plh == 3){
+			kdt[2].suara++;
+		}else if(plh == 4){
+			kdt[3].suara++;
+		}else if(plh == 5){
+			kdt[4].suara++;
+		}else if(plh == 6){
+			kdt[5].suara++;
 		}else {
 			cout << "Salah nomorurut" << endl;
 		}
@@ -345,6 +360,23 @@ void doVoting() {
 
 void voting() {
 	cekToken();
+}
+
+void shorting() {
+	for(int i = 1; i < a; i++) {
+		for(int j = a - 1; j >= i; j--) {
+			if(kdt[j].suara < kdt[j-1].suara) {
+				temp = kdt[j].suara;
+				kdt[j].suara = kdt[j-1].suara;
+				kdt[j-1].suara = temp;
+			}
+		}
+	}
+
+	cout << "Hasil Akhir" << endl;
+	cout << "========================================" << endl;
+	readKandidat();
+
 }
 
 
