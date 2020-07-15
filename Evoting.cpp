@@ -27,6 +27,7 @@ void stackToken(stack <string> token) {
 
 kandidat kdt[100];
 int a,b,c,jml,temp;
+bool found;
 
 // *****************************************PROTOTYPE FUNGSI************************************* //
 // Menu
@@ -46,8 +47,9 @@ void cekToken();
 // Voting
 void voting();
 void doVoting();
-// Shorting
-void shorting();
+// sorting
+void sorting();
+void searching();
 // ***************************************END PROTOTYPE FUNGSI*********************************** //
 
 
@@ -68,12 +70,13 @@ void mainMenu(){
 	cout << "1.Login(admin)"    << endl;
 	cout << "2.Voting"		    << endl;
 	cout << "3.Lihat Kandidat"  << endl;
-	cout << "4.Pentujuk Voting" << endl;
+	cout << "4.Cari Kandidat"   << endl;
+	cout << "5.Pentujuk Voting" << endl;
 	cout << "=================================" << endl;
 	cout << "pilih menu: ";
 	cin >> plh;
 
-	enum option {LOGIN = 1, VOTING, LIHAT, PETUNJUK};
+	enum option {LOGIN = 1, VOTING, LIHAT, CARI, PETUNJUK};
 
 		switch(plh) {
 			case LOGIN:
@@ -84,6 +87,9 @@ void mainMenu(){
 			break;
 			case LIHAT:
 				readKandidat();
+			break;
+			case CARI:
+				searching();
 			break;
 			case PETUNJUK:
 				// petunjuk();
@@ -154,7 +160,7 @@ void mainAdmin() {
 				deleteToken();
 			break;
 			case HASIL:
-				shorting();
+				sorting();
 			break;
 			case LOGOUT:
 				cout << "Anda telah logout" << endl;
@@ -362,10 +368,10 @@ void voting() {
 	cekToken();
 }
 
-void shorting() {
+void sorting() {
 	for(int i = 1; i < a; i++) {
 		for(int j = a - 1; j >= i; j--) {
-			if(kdt[j].suara < kdt[j-1].suara) {
+			if(kdt[j].suara > kdt[j-1].suara) {
 				temp = kdt[j].suara;
 				kdt[j].suara = kdt[j-1].suara;
 				kdt[j-1].suara = temp;
@@ -377,6 +383,22 @@ void shorting() {
 	cout << "========================================" << endl;
 	readKandidat();
 
+}
+
+void searching() {
+	int noUrutKandidat,tmp;
+	cout << "Masukan no.Urut Kandidat yang dicari: ";
+	cin >> noUrutKandidat;
+	tmp = noUrutKandidat - 1;
+		
+		cout << "Hasil Cari" << endl;
+		cout << "==========================================" << endl;
+		cout << "Nama 		: " << kdt[tmp].nama << endl;
+		cout << "Visi 		: " << kdt[tmp].visi << endl;
+		cout << "Misi 		: " << kdt[tmp].misi << endl;
+		cout << "No.Urut 	: " << kdt[tmp].noUrut << endl;
+		cout << "=========================================" << endl;	
+	
 }
 
 
