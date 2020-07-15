@@ -282,7 +282,7 @@ void deleteKandidat() {
 			}
 			cout << "Kandidat berhasil dihapus" << endl;
 		}else if(z == 'n' || z == 'N') {
-			goto awal;
+			mainAdmin();
 		}else {
 			goto yakin;
 		}
