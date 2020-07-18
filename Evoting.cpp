@@ -65,6 +65,7 @@ void mainMenu(){
 	system("cls");
 	int plh;
 	awal:
+
 	cout << " ============================================ "<< endl;
 	cout << " |            Evoting #DariRumah            | "<< endl;
 	cout << " ============================================ "<< endl;
@@ -127,6 +128,7 @@ void mainAdmin() {
 	char is_continue;
 	
 	lanjut:
+
 	cout << " ============================================ "<< endl;
 	cout << " |                  Menu                    | "<< endl;
 	cout << " ============================================ "<< endl;
@@ -141,6 +143,7 @@ void mainAdmin() {
 	cout << " |9.|Logout                                 | "<< endl;
 	cout << " ============================================ "<< endl;
 	cout << " Pilih menu : ";
+
 	cin >> plh;
 
 	enum option {CREATE = 1, READ, UPDATE, DELETE, TOKEN, rTOKEN, dTOKEN, HASIL, LOGOUT};
@@ -266,6 +269,36 @@ void updateKandidat(){
 }
 
 void deleteKandidat() {
+	int w,x,y;
+	char z;
+	awal:
+	readKandidat();
+	cout << "Hapus Kandidat No: ";
+	cin >> x;
+
+	y = x - 1;
+	cout << "data yang akan di edit" << endl;
+	cout << "=========================================" << endl;
+	cout << "Nama 		: " << kdt[y].nama << endl;
+	cout << "Visi 		: " << kdt[y].visi << endl;
+	cout << "Misi 		: " << kdt[y].misi << endl;
+	cout << "No.Urut 	: " << kdt[y].noUrut << endl;
+	cout << "=========================================" << endl;
+	cout << "Yakin ingin hapus? (Y/N): ";
+	cin >> z;
+
+		yakin:
+		if(z == 'y' || z == 'Y') {
+			a--;
+			for(int i = y; i < a; i++) {
+				kdt[i] = kdt[i + 1];
+			}
+			cout << "Kandidat berhasil dihapus" << endl;
+		}else if(z == 'n' || z == 'N') {
+			mainAdmin();
+		}else {
+			goto yakin;
+		}
 
 	int w,x,y;
 	char z;
@@ -395,7 +428,24 @@ void sorting() {
 
 	cout << " Hasil Akhir " << endl;
 	cout << " ========================================" << endl;
-	readKandidat();
+
+}
+
+void searching() {
+	int noUrutKandidat,tmp;
+	cout << "Masukan no.Urut Kandidat yang dicari: ";
+	cin >> noUrutKandidat;
+	tmp = noUrutKandidat - 1;
+		
+		cout << "Hasil Cari" << endl;
+		cout << "==========================================" << endl;
+		cout << "Nama 		: " << kdt[tmp].nama << endl;
+		cout << "Visi 		: " << kdt[tmp].visi << endl;
+		cout << "Misi 		: " << kdt[tmp].misi << endl;
+		cout << "No.Urut 	: " << kdt[tmp].noUrut << endl;
+		cout << "=========================================" << endl;	
+	
+}
 
 }
 
