@@ -59,21 +59,23 @@ int main(){
 }
 
 
-
 // ********************************************FUNGSI******************************************** //
 // Menu Utama
 void mainMenu(){
+	system("cls");
 	int plh;
 	awal:
-	cout << "Evoting #DariRumah" << endl;
-	cout << "=================================" << endl;
-	cout << "1.Login(admin)"    << endl;
-	cout << "2.Voting"		    << endl;
-	cout << "3.Lihat Kandidat"  << endl;
-	cout << "4.Cari Kandidat"   << endl;
-	cout << "5.Pentujuk Voting" << endl;
-	cout << "=================================" << endl;
-	cout << "pilih menu: ";
+
+	cout << " ============================================ "<< endl;
+	cout << " |            Evoting #DariRumah            | "<< endl;
+	cout << " ============================================ "<< endl;
+	cout << " |1.|Login(admin)                           | "<< endl;
+	cout << " |2.|Voting                                 | "<< endl;
+	cout << " |3.|Lihat Kandidat                         | "<< endl;
+	cout << " |4.|Cari Kandidat                          | "<< endl;
+	cout << " |5.|Pentujuk Voting                        | "<< endl;
+	cout << " ============================================ "<< endl;
+	cout << " Pilih menu: ";
 	cin >> plh;
 
 	enum option {LOGIN = 1, VOTING, LIHAT, CARI, PETUNJUK};
@@ -92,47 +94,56 @@ void mainMenu(){
 				searching();
 			break;
 			case PETUNJUK:
-				// petunjuk();
+				 //petunjuk();
 			break;
 		}
 }
 
 // Login
 void login() {
+	system("cls");
 	string usr,pass;
-	cout << "Login" << endl;
-	cout << "====================" << endl;
-	cout << "Username: ";
+	
+	cout << " ==================== " << endl;
+	cout << " |      Login       | " << endl;
+	cout << " ==================== " << endl;
+	cout << " Username: ";
 	cin >> usr;
-	cout << "Password: ";
+	cout << " Password: ";
 	cin >> pass;
+	cout << " ==================== " << endl;
 
 		if(usr == "admin" && pass == "admin123"){
 			mainAdmin();
 		}else {
-			cout << "Maaf Anda bukan admin!" << endl;
+			cout << " Maaf Anda bukan admin! " << endl;
 		}
-
 }
 
 // Halaman Admin
 void mainAdmin() {
+	system("cls");
 	stack <string> token;
 	int plh;
 	char is_continue;
+	
 	lanjut:
-	cout << "Menu" << endl;
-	cout << "=================" << endl;
-	cout << "1.Tambah Kandidat" << endl;
-	cout << "2.Lihat Kandidat"  << endl;
-	cout << "3.Edit Kandidat"   << endl;
-	cout << "4.Hapus Kandidat"	<< endl;
-	cout << "5.Buat Token"	    << endl;
-	cout << "6.Lihat Token"	    << endl;
-	cout << "7.Hapus Token"	    << endl;
-	cout << "8.Hasil Akhir"	    << endl;
-	cout << "9.Logout"	        << endl;
-	cout << "Pilih menu :";
+
+	cout << " ============================================ "<< endl;
+	cout << " |                  Menu                    | "<< endl;
+	cout << " ============================================ "<< endl;
+	cout << " |1.|Tambah Kandidat                        | "<< endl;
+	cout << " |2.|Lihat Kandidat                         | "<< endl;
+	cout << " |3.|Edit Kandidat                          | "<< endl;
+	cout << " |4.|Hapus Kandidat                         | "<< endl;
+	cout << " |5.|Buat Token                             | "<< endl;
+	cout << " |6.|Lihat Token                            | "<< endl;
+	cout << " |7.|Hapus Token                            | "<< endl;
+	cout << " |8.|Hasil Akhir                            | "<< endl;
+	cout << " |9.|Logout                                 | "<< endl;
+	cout << " ============================================ "<< endl;
+	cout << " Pilih menu : ";
+
 	cin >> plh;
 
 	enum option {CREATE = 1, READ, UPDATE, DELETE, TOKEN, rTOKEN, dTOKEN, HASIL, LOGOUT};
@@ -163,20 +174,20 @@ void mainAdmin() {
 				sorting();
 			break;
 			case LOGOUT:
-				cout << "Anda telah logout" << endl;
+				cout << " Anda telah logout " << endl;
 				mainMenu();
 			break;
 		}
 
 	label_continue:
 	cout << endl;
-	cout << "Lanjutkan?(Y/N) : ";
+	cout << " Lanjutkan?(Y/N) : ";
 	cin >> is_continue;
-
+	system("cls");
 	if (is_continue == 'y' || is_continue == 'Y') {
 		goto lanjut;
 	}else if (is_continue == 'n' || is_continue == 'N') {
-		cout << "Anda telah logout!" << endl;
+		cout << " Anda telah logout!" << endl;
 		mainMenu();
 	}else {
 		goto label_continue;
@@ -185,21 +196,21 @@ void mainAdmin() {
 
 // Tambah Kandidat
 void createKandidat() {
-
-	cout << "Masukan berapa kandidat: ";
+	system("cls");
+	cout << " Masukan berapa kandidat: ";
 	cin >> jml;
 
 	b = 0;
 	for(int i = 0; i < jml; i++) {
 		b += 1;
-		cout << "Masukan kandidat ke-" << b << endl;
-		cout << "Nama: ";
+		cout << "\n Masukan kandidat ke-" << b << endl;
+		cout << " Nama	  : ";
 		cin >> kdt[a].nama;
-		cout << "Visi: ";
+		cout << " Visi	  : ";
 		cin >> kdt[a].visi;
-		cout << "Misi: ";
+		cout << " Misi	  : ";
 		cin >> kdt[a].misi;
-		cout << "Nomor urut: ";
+		cout << " Nomor urut: ";
 		cin >> kdt[a].noUrut;
 		a++;
 	} 
@@ -207,16 +218,16 @@ void createKandidat() {
 
 // Lihat Kandidat
 void readKandidat() {
-
+	system("cls");
 	cout << endl;
- 	cout << "                                           Kandidat                                      " << endl;
- 	cout << "=========================================================================================" << endl;
- 	cout << "No \tNama \t\tVisi \t\tMisi \t\t\tNo.Urut \tSuara \t" 	<< endl;
-    cout << "=========================================================================================" << endl;
+ 	cout << "                                            Kandidat                                      " << endl;
+ 	cout << "==========================================================================================" << endl;
+ 	cout << "No \tNama \t\tVisi \t\tMisi \t\tNo.Urut \tSuara \t" 	<< endl;
+    cout << "==========================================================================================" << endl;
     int j = 0;
 	for(int i = 0; i < a; i++) {
 		j+=1;
-		cout << j << "\t";
+		cout << j << "\t ";
 		cout << kdt[i].nama 	<< "\t\t";
 		cout << kdt[i].visi 	<< "\t\t";
 		cout << kdt[i].misi 	<< "\t\t";
@@ -224,34 +235,36 @@ void readKandidat() {
 		cout << kdt[i].suara 	<< "\t\t";
 		cout << endl;
 	}
-	cout << "=========================================================================================" << endl;
+	cout << "==========================================================================================" << endl;
 
 }
 
 void updateKandidat(){
+	system("cls");
 	int j,k,l;
 	readKandidat();
-	cout << "Edit Kandidat No: ";
+	cout << " Edit Kandidat No: ";
 	cin >> k;
 
 	l = k - 1;
-	cout << "data yang akan di edit" << endl;
-	cout << "=========================================" << endl;
-	cout << "Nama 		: " << kdt[l].nama << endl;
-	cout << "Visi 		: " << kdt[l].visi << endl;
-	cout << "Misi 		: " << kdt[l].misi << endl;
-	cout << "No.Urut 	: " << kdt[l].noUrut << endl;
-	cout << "=========================================" << endl;
+	cout << " ========================================= " << endl;
+	cout << " |         data yang akan di edit        | " << endl;
+	cout << " ========================================= " << endl;
+	cout << " |Nama 		: " << kdt[l].nama <<endl;
+	cout << " |Visi 		: " << kdt[l].visi <<endl;
+	cout << " |Misi 		: " << kdt[l].misi <<endl;
+	cout << " |No.Urut 		: " << kdt[l].noUrut << endl;
+	cout << " ========================================= " << endl;
 	cout <<  endl;
-	cout << "Silahkan edit" << endl;
-	cout << "=========================================" << endl;
-	cout << "Nama: ";
+	cout << " Silahkan edit " << endl;
+	cout << " ========================================= " << endl;
+	cout << " Nama: ";
 	cin >> kdt[l].nama;
-	cout << "Visi: ";
+	cout << " Visi: ";
 	cin >> kdt[l].visi;
-	cout << "Misi: ";
+	cout << " Misi: ";
 	cin >> kdt[l].misi;
-	cout << "No.Urut: ";
+	cout << " No.Urut: ";
 	cin >> kdt[l].noUrut;
 }
 
@@ -287,53 +300,87 @@ void deleteKandidat() {
 			goto yakin;
 		}
 
+	int w,x,y;
+	char z;
+	awal:
+	readKandidat();
+	cout << " Hapus Kandidat No: ";
+	cin >> x;
+
+	y = x - 1;
+	cout << " Data yang akan di edit " << endl;
+	cout << " ========================================= " << endl;
+	cout << " Nama 		: " << kdt[y].nama << endl;
+	cout << " Visi 		: " << kdt[y].visi << endl;
+	cout << " Misi 		: " << kdt[y].misi << endl;
+	cout << " No.Urut 	: " << kdt[y].noUrut << endl;
+	cout << " ========================================= " << endl;
+	cout << " Yakin ingin hapus? (Y/N): ";
+	cin >> z;
+
+		yakin:
+		if(z == 'y' || z == 'Y') {
+			a--;
+			for(int i = y; i < a; i++) {
+				kdt[i] = kdt[i + 1];
+			}
+			cout << " Kandidat berhasil dihapus" << endl;
+		}
+		else if(z == 'n' || z == 'N') {
+			mainAdmin();
+		}
+		else {
+			goto yakin;
+		}
 }
 
 // Buat Token
 void createToken() {
+	system("cls");
     string tkn;
     int jml;
-    cout << "Berapa Token: ";
+    cout << " Berapa Token: ";
     cin >> jml;
         for(int i = 0; i < jml; i++) {
-            cout << "Masukan token ke-" << i + 1 << endl;
-            cout << "Token: ";
+            cout << " Masukan token ke-" << i + 1 << endl;
+            cout << " Token: ";
             cin >> tkn;
             token.push(tkn);
         }
 
-       cout << "Token yang dibuat: ";
+       cout << " Token yang dibuat: ";
        stackToken(token);
 }
 
 // Lihat Token
 void readToken() {
-	cout << "Token dalam stack:" << endl;
+	system("cls");
+	cout << " Token dalam stack: " << endl;
 	stackToken(token);
 }
 
 // Hapus Token
 void deleteToken() {
+	system("cls");
 	token.pop();
-
-	cout << "Token dihapus" << endl;
+	cout << " Token dihapus " << endl;
 	mainAdmin();
-
 }
 
 // Validasi Token
 void cekToken() {
+	system("cls");
 	string tkn;
 
-	cout << "Masukan token: ";
+	cout << " Masukan token: ";
 	cin >> tkn;
 
 		if(tkn == token.top()) {
-			cout << "Berhasil" << endl;
+			cout << " Berhasil " << endl;
 			token.pop();
 			doVoting();
 		}else {
-			cout << "Token tidak ada" << endl;
+			cout << " Token tidak ada " << endl;
 		}
 		
 }
@@ -341,7 +388,7 @@ void cekToken() {
 void doVoting() {
 	int plh;
 	readKandidat();
-	cout << "Pilih kandidat: ";
+	cout << " Pilih kandidat: ";
 	cin >> plh;
 		if(plh == 1) {
 			kdt[0].suara++;
@@ -356,10 +403,10 @@ void doVoting() {
 		}else if(plh == 6){
 			kdt[5].suara++;
 		}else {
-			cout << "Salah nomorurut" << endl;
+			cout << " Salah nomor urut " << endl;
 		}
 
-	cout << "Hasil suara" << endl;
+	cout << " Hasil suara " << endl;
 	readKandidat();
 	mainMenu();
 }
@@ -379,9 +426,8 @@ void sorting() {
 		}
 	}
 
-	cout << "Hasil Akhir" << endl;
-	cout << "========================================" << endl;
-	readKandidat();
+	cout << " Hasil Akhir " << endl;
+	cout << " ========================================" << endl;
 
 }
 
@@ -401,7 +447,22 @@ void searching() {
 	
 }
 
+}
 
+void searching() {
+	int noUrutKandidat,tmp;
+	cout << " Masukan no.Urut Kandidat yang dicari: ";
+	cin >> noUrutKandidat;
+	tmp = noUrutKandidat - 1;
+		
+		cout << " Hasil Cari " << endl;
+		cout << " ========================================== " << endl;
+		cout << " Nama 		: " << kdt[tmp].nama << endl;
+		cout << " Visi 		: " << kdt[tmp].visi << endl;
+		cout << " Misi 		: " << kdt[tmp].misi << endl;
+		cout << " No.Urut 	: " << kdt[tmp].noUrut << endl;
+		cout << " ========================================= " << endl;		
+}
 
 
 // *****************************************END FUNGSI***************************************** //
