@@ -99,7 +99,10 @@ void mainMenu(){
 				searching();
 			break;
 			case PETUNJUK:
-				 //petunjuk();
+				 cout << "Manua; Guide" << endl;
+				 cout << endl;
+				 cout << endl;
+				 goto awal;
 			break;
 		}
 }
