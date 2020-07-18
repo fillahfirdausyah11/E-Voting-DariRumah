@@ -89,9 +89,13 @@ void mainMenu(){
 			break;
 			case LIHAT:
 				readKandidat();
+				cout <<  endl;
+				cout <<  endl;
 				goto awal;
 			break;
 			case CARI:
+			// system("cls");
+			system("clear");
 				searching();
 			break;
 			case PETUNJUK:
@@ -177,6 +181,8 @@ void mainAdmin() {
 				sorting();
 			break;
 			case LOGOUT:
+			// system("cls");
+			system("clear");
 				cout << " Anda telah logout " << endl;
 				mainMenu();
 			break;
@@ -413,7 +419,9 @@ void sorting() {
 
 void searching() {
 	int noUrutKandidat,tmp;
-	cout << " Masukan no.Urut Kandidat yang dicari: ";
+	char z;
+	awal:
+	cout << " Masukan No.  Urut Kandidat yang dicari: ";
 	cin >> noUrutKandidat;
 	tmp = noUrutKandidat - 1;
 		
@@ -423,8 +431,21 @@ void searching() {
 		cout << " Visi 		: " << kdt[tmp].visi << endl;
 		cout << " Misi 		: " << kdt[tmp].misi << endl;
 		cout << " No.Urut 	: " << kdt[tmp].noUrut << endl;
-		cout << " ========================================= " << endl;		
-}
-
+		cout << " ========================================= " << endl;
+	l:
+	cout << "Kembali Ke Menu Utama (Y/N): ";
+	cin >> z;
+		if(z == 'y' || z == 'Y') {
+			// system("cls");
+			system("clear");
+			mainMenu();
+		}else if(z == 'n' || z == 'N') {
+			// system("cls");
+			system("clear");
+			goto awal;
+		}else {
+			goto l;
+		}
+	}
 
 // *****************************************END FUNGSI***************************************** //
