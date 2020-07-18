@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 #include <stack>
-#define max 5
 
 using namespace std;
 
@@ -47,7 +46,7 @@ void cekToken();
 // Voting
 void voting();
 void doVoting();
-// sorting
+// sorting & searching
 void sorting();
 void searching();
 // ***************************************END PROTOTYPE FUNGSI*********************************** //
@@ -55,6 +54,8 @@ void searching();
 
 // Main Program
 int main(){
+	// system("cls");
+	system("clear");
 	mainMenu();
 }
 
@@ -62,7 +63,6 @@ int main(){
 // ********************************************FUNGSI******************************************** //
 // Menu Utama
 void mainMenu(){
-	system("cls");
 	int plh;
 	awal:
 
@@ -89,6 +89,7 @@ void mainMenu(){
 			break;
 			case LIHAT:
 				readKandidat();
+				goto awal;
 			break;
 			case CARI:
 				searching();
@@ -101,7 +102,8 @@ void mainMenu(){
 
 // Login
 void login() {
-	system("cls");
+	// system("cls");
+	system("clear");
 	string usr,pass;
 	
 	cout << " ==================== " << endl;
@@ -122,7 +124,8 @@ void login() {
 
 // Halaman Admin
 void mainAdmin() {
-	system("cls");
+	// system("cls");
+	system("clear");
 	stack <string> token;
 	int plh;
 	char is_continue;
@@ -178,12 +181,12 @@ void mainAdmin() {
 				mainMenu();
 			break;
 		}
-
 	label_continue:
 	cout << endl;
 	cout << " Lanjutkan?(Y/N) : ";
 	cin >> is_continue;
-	system("cls");
+	// system("cls");
+	system("clear");
 	if (is_continue == 'y' || is_continue == 'Y') {
 		goto lanjut;
 	}else if (is_continue == 'n' || is_continue == 'N') {
@@ -196,7 +199,8 @@ void mainAdmin() {
 
 // Tambah Kandidat
 void createKandidat() {
-	system("cls");
+	// system("cls");
+	system("clear");
 	cout << " Masukan berapa kandidat: ";
 	cin >> jml;
 
@@ -205,47 +209,45 @@ void createKandidat() {
 		b += 1;
 		cout << "\n Masukan kandidat ke-" << b << endl;
 		cout << " Nama	  : ";
-		cin >> kdt[a].nama;
+		getline(cin >> ws, kdt[a].nama);
 		cout << " Visi	  : ";
-		cin >> kdt[a].visi;
+		getline(cin >> ws, kdt[a].visi);
 		cout << " Misi	  : ";
-		cin >> kdt[a].misi;
+		getline(cin >> ws, kdt[a].misi);
 		cout << " Nomor urut: ";
-		cin >> kdt[a].noUrut;
+		getline(cin >> ws, kdt[a].noUrut);
 		a++;
 	} 
 }
 
 // Lihat Kandidat
 void readKandidat() {
-	system("cls");
+	// system("cls");
+	system("clear");
 	cout << endl;
- 	cout << "                                            Kandidat                                      " << endl;
- 	cout << "==========================================================================================" << endl;
- 	cout << "No \tNama \t\tVisi \t\tMisi \t\tNo.Urut \tSuara \t" 	<< endl;
-    cout << "==========================================================================================" << endl;
-    int j = 0;
+	cout << " ========================================= " << endl;
+	cout << " |               Kandidat                 | " << endl;
+	cout << " ========================================= " << endl;
 	for(int i = 0; i < a; i++) {
-		j+=1;
-		cout << j << "\t ";
-		cout << kdt[i].nama 	<< "\t\t";
-		cout << kdt[i].visi 	<< "\t\t";
-		cout << kdt[i].misi 	<< "\t\t";
-		cout << kdt[i].noUrut 	<< "\t\t";
-		cout << kdt[i].suara 	<< "\t\t";
-		cout << endl;
+		cout << " |Kandidat ke-" << i + 1 << endl;
+		cout << " |Nama 		: " << kdt[i].nama <<endl;
+		cout << " |Visi 		: " << kdt[i].visi <<endl;
+		cout << " |Misi 		: " << kdt[i].misi <<endl;
+		cout << " |No.Urut: 	: " << kdt[i].noUrut << endl;
+		cout << " |Suara		: " << kdt[i].suara << endl;		
 	}
-	cout << "==========================================================================================" << endl;
-
+	cout << " ========================================= " << endl;
 }
 
 void updateKandidat(){
-	system("cls");
+	// system("cls");
+	system("clear");
 	int j,k,l;
 	readKandidat();
 	cout << " Edit Kandidat No: ";
 	cin >> k;
-
+	// system("cls");
+	system("clear");
 	l = k - 1;
 	cout << " ========================================= " << endl;
 	cout << " |         data yang akan di edit        | " << endl;
@@ -259,56 +261,27 @@ void updateKandidat(){
 	cout << " Silahkan edit " << endl;
 	cout << " ========================================= " << endl;
 	cout << " Nama: ";
-	cin >> kdt[l].nama;
+	getline(cin >> ws, kdt[l].nama);
 	cout << " Visi: ";
-	cin >> kdt[l].visi;
+	getline(cin >> ws, kdt[l].visi);
 	cout << " Misi: ";
-	cin >> kdt[l].misi;
+	getline(cin >> ws, kdt[l].misi);
 	cout << " No.Urut: ";
-	cin >> kdt[l].noUrut;
+	getline(cin >> ws, kdt[l].noUrut);
 }
 
 void deleteKandidat() {
-	int w,x,y;
-	char z;
-	awal:
-	readKandidat();
-	cout << "Hapus Kandidat No: ";
-	cin >> x;
-
-	y = x - 1;
-	cout << "data yang akan di edit" << endl;
-	cout << "=========================================" << endl;
-	cout << "Nama 		: " << kdt[y].nama << endl;
-	cout << "Visi 		: " << kdt[y].visi << endl;
-	cout << "Misi 		: " << kdt[y].misi << endl;
-	cout << "No.Urut 	: " << kdt[y].noUrut << endl;
-	cout << "=========================================" << endl;
-	cout << "Yakin ingin hapus? (Y/N): ";
-	cin >> z;
-
-		yakin:
-		if(z == 'y' || z == 'Y') {
-			a--;
-			for(int i = y; i < a; i++) {
-				kdt[i] = kdt[i + 1];
-			}
-			cout << "Kandidat berhasil dihapus" << endl;
-		}else if(z == 'n' || z == 'N') {
-			mainAdmin();
-		}else {
-			goto yakin;
-		}
 
 	int w,x,y;
 	char z;
+
 	awal:
 	readKandidat();
 	cout << " Hapus Kandidat No: ";
 	cin >> x;
 
 	y = x - 1;
-	cout << " Data yang akan di edit " << endl;
+	cout << " Data yang akan dihapus " << endl;
 	cout << " ========================================= " << endl;
 	cout << " Nama 		: " << kdt[y].nama << endl;
 	cout << " Visi 		: " << kdt[y].visi << endl;
@@ -336,7 +309,8 @@ void deleteKandidat() {
 
 // Buat Token
 void createToken() {
-	system("cls");
+	// system("cls");
+	system("clear");
     string tkn;
     int jml;
     cout << " Berapa Token: ";
@@ -354,14 +328,16 @@ void createToken() {
 
 // Lihat Token
 void readToken() {
-	system("cls");
+	// system("cls");
+	system("clear");
 	cout << " Token dalam stack: " << endl;
 	stackToken(token);
 }
 
 // Hapus Token
 void deleteToken() {
-	system("cls");
+	// system("cls");
+	system("clear");
 	token.pop();
 	cout << " Token dihapus " << endl;
 	mainAdmin();
@@ -369,7 +345,8 @@ void deleteToken() {
 
 // Validasi Token
 void cekToken() {
-	system("cls");
+	// system("cls");
+	system("clear");
 	string tkn;
 
 	cout << " Masukan token: ";
@@ -405,9 +382,9 @@ void doVoting() {
 		}else {
 			cout << " Salah nomor urut " << endl;
 		}
-
-	cout << " Hasil suara " << endl;
-	readKandidat();
+	// system("cls");
+	system("clear");
+	cout << "Voting Berhasil" << endl;
 	mainMenu();
 }
 
@@ -428,26 +405,11 @@ void sorting() {
 
 	cout << " Hasil Akhir " << endl;
 	cout << " ========================================" << endl;
+	readKandidat();
 
 }
 
-void searching() {
-	int noUrutKandidat,tmp;
-	cout << "Masukan no.Urut Kandidat yang dicari: ";
-	cin >> noUrutKandidat;
-	tmp = noUrutKandidat - 1;
-		
-		cout << "Hasil Cari" << endl;
-		cout << "==========================================" << endl;
-		cout << "Nama 		: " << kdt[tmp].nama << endl;
-		cout << "Visi 		: " << kdt[tmp].visi << endl;
-		cout << "Misi 		: " << kdt[tmp].misi << endl;
-		cout << "No.Urut 	: " << kdt[tmp].noUrut << endl;
-		cout << "=========================================" << endl;	
-	
-}
 
-}
 
 void searching() {
 	int noUrutKandidat,tmp;
