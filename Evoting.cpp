@@ -6,6 +6,7 @@ using namespace std;
 
 stack <string> token;
 
+//=== struct ===//
 struct kandidat{
 	string nama;
 	string visi;
@@ -13,8 +14,9 @@ struct kandidat{
 	string noUrut;
 	int suara;
 };
+//=== end struct ===//
 
-// Stack
+//=== stack ===//
 void stackToken(stack <string> token) {
 	while(!token.empty()) {
 		cout << " " << token.top();
@@ -23,10 +25,12 @@ void stackToken(stack <string> token) {
 
 	cout << endl;
 }
+//=== end stack ===//
 
+//=== array ===//
 kandidat kdt[100];
+//=== end array ===//
 int a,b,c,jml,temp;
-bool found;
 
 // *****************************************PROTOTYPE FUNGSI************************************* //
 // Menu
@@ -86,6 +90,9 @@ void mainMenu(){
 			break;
 			case VOTING:
 				voting();
+				cout << endl;
+				cout << endl;
+				goto awal;
 			break;
 			case LIHAT:
 				readKandidat();
@@ -99,7 +106,7 @@ void mainMenu(){
 				searching();
 			break;
 			case PETUNJUK:
-				 cout << "Manua; Guide" << endl;
+				 cout << "Manual Guide" << endl;
 				 cout << endl;
 				 cout << endl;
 				 goto awal;
@@ -401,6 +408,7 @@ void voting() {
 	cekToken();
 }
 
+//=== sorting ===//
 void sorting() {
 	for(int i = 1; i < a; i++) {
 		for(int j = a - 1; j >= i; j--) {
@@ -417,9 +425,10 @@ void sorting() {
 	readKandidat();
 
 }
+//=== end sorting ===//
 
 
-
+//=== searching ===//
 void searching() {
 	int noUrutKandidat,tmp;
 	char z;
@@ -450,5 +459,6 @@ void searching() {
 			goto l;
 		}
 	}
+//=== end searching ===//
 
 // *****************************************END FUNGSI***************************************** //
